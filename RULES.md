@@ -1,4 +1,4 @@
-# Sprint 01 Rules (v1.8)
+# Sprint 01 Rules (v1.9)
 
 Changes to these rules are listed in `CHANGELOG.md`.
 
@@ -55,6 +55,13 @@ is an equally valid research result.
 
 The audit catches common look-ahead mistakes. It is not secure against a participant who sets out to
 fool it; the rules rely on good faith. Known gaps are listed in [`LIMITATIONS.md`](LIMITATIONS.md).
+
+## Extra strategies
+
+A participant may open one strategy PR outside their track, by Nov 20. It is reviewed after the track
+PRs and merged before the code freeze once the participant's own Part 1 is merged and Part 2 is open.
+If its hypothesis and settings were not posted in a draft PR before the first run on the full training
+panel, it is reported as exploratory, and its write-up states roughly how many variants were tried.
 
 ## Official verdict
 

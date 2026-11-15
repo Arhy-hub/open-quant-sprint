@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.9 (2026-11-15)
+
+Rules and documentation (audit unchanged, version 1.3.2)
+- `RULES.md`: new section "Extra strategies". A participant may open one strategy PR outside their
+  track, by Nov 20. It is merged before the freeze once their own Part 1 is merged and Part 2 is open,
+  and it is reported as exploratory unless its hypothesis and settings were posted before the first
+  full-panel run. Nothing changes for track PRs or for strategies already merged.
+
 ## v1.8 (2026-11-08)
 
 Audit (audit version 1.3.2). Reported privately by Yousof.
