@@ -8,10 +8,12 @@ def variance_ratio(returns: np.ndarray, q: int) -> tuple[float, float]:
     returns: 1-period log returns. q: aggregation horizon (q >= 2).
     Returns (VR(q), z*(q)).
     """
+    r = returns[~np.isnan(returns)]
+
     if q < 2:
         raise ValueError("q must be >= 2")
 
-    r = returns[~np.isnan(returns)]  # NOTE: joins returns across gaps; check the issue's NaN rule
+  
     nq = len(r)
     if nq <= q:
         raise ValueError("need more than q returns")
