@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.10 (2026-11-17)
+
+Rules and documentation (audit unchanged, version 1.3.2)
+- `RULES.md`, the Dec 7 procedure has a new step 2. It checks that the forward period continues the
+  panel with `python -m src.contrib.yousof --continuation` (Track 01, #34) and lists the first bar,
+  the last bar and the number of bars of every symbol in both files. If anything is off, both files
+  are built again once with `--overwrite`. Missing hours that remain are listed in the report, and
+  the run goes ahead on the bars that exist.
+- If an hour is missing for every symbol at the seam, or the period file starts late, the audit
+  cannot run, because it stops on such a seam. The seam then moves to the hour after the first full
+  hour past the gap. The missing hours fall inside the panel, and the forward period is shorter by
+  those hours.
+- The check's output and the bar list are published with the log. On Nov 22 the same check runs on
+  the train and holdout files.
+- A strategy that fails on a missing hour or on a filled bar (zero volume, zero funding) is listed as
+  failed, like any other failure in an official run.
+
 ## v1.9 (2026-11-15)
 
 Rules and documentation (audit unchanged, version 1.3.2)
