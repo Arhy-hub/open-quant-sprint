@@ -12,7 +12,8 @@ DEADBAND = 0.03  # rebalance buffer; audited trials: 0, 0.015, 0.03 (all listed 
 def compute_weights(df: pd.DataFrame) -> pd.Series:
     """
     Contrarian weights: sell the symbols that rose most over the last Q hours relative to
-    the others, buy the ones that fell most. Dollar-neutral at every timestamp.
+    the others, buy the ones that fell most. The target is dollar-neutral at every timestamp;
+    after rebalance_deadband the held weights can drift slightly.
 
     Causal: the signal at t uses log closes at t and t - Q hours of the same symbol only.
     The lookback is matched on timestamp, not row count, so a symbol with dropped hours
