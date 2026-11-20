@@ -1,12 +1,13 @@
 """Track 11, Part 2: variance-ratio study on the full panel and on each half.
 
 Run from the repo root (only after the declaration is posted on the PR):
-    python -m research.arhaan.VR_testing
+    python -m research.arhaan.vr_testing
 
 Writes to research/arhaan/out/:
     vr_full.csv, vr_half1.csv, vr_half2.csv   -- one row per (series, q), Holm within each
     split_half.csv                            -- sign of VR - 1 in each half, and whether it flips
     vr_full.png, vr_half1.png, vr_half2.png   -- VR curves with the |z*| < 1.96 band
+    vr_index.png                              -- VR curve for the index (all results: RESULTS.md)
 """
 from pathlib import Path
 
@@ -15,6 +16,7 @@ import pandas as pd
 
 from research.arhaan.load import load_returns
 from research.arhaan.plots import plot_vr_curves
+from research.arhaan.report import _span, write_report
 from research.arhaan.vr_table import vr_table
 
 OUT = Path("research/arhaan/out")
@@ -52,6 +54,9 @@ def run(returns: pd.DataFrame, out: Path = OUT) -> dict[str, pd.DataFrame]:
     split = split_half_check(tables["half1"], tables["half2"])
     split.to_csv(out / "split_half.csv", index=False)
     tables["split"] = split
+
+    spans = {k: _span(v.index) for k, v in periods.items()}
+    write_report(tables["full"], tables["half1"], tables["half2"], split, spans, out)
     return tables
 
 
